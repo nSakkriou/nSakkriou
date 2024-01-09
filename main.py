@@ -41,6 +41,9 @@ def get_weather(city):
     res = requests.get(url)
     return res.text
 
+def get_date():
+    return datetime.datetime.now()
+
 if __name__ == "__main__":
     city = "Rennes"
 
@@ -54,7 +57,8 @@ if __name__ == "__main__":
 
     data = {
         "badges" : BADGES,
-        "weather" : get_weather(city)   
+        "weather" : get_weather(city),
+   	"date": get_date()
     }
 
     with open("README.md", "w", encoding="utf-8") as readme:
