@@ -1,5 +1,5 @@
 from jinja2 import Template
-import requests
+import requests, os, sys
 
 BADGES = [
     "![Vagrant](https://img.shields.io/badge/vagrant-%231563FF.svg?style=for-the-badge&logo=vagrant&logoColor=white)",
@@ -41,16 +41,19 @@ def get_weather(city):
     return res.text
 
 if __name__ == "__main__":
-    
+    city = "Rennes"
+
+    if(len(sys.argv) > 1):
+        city = sys.argv[1]
+
     with open("README.template.md", "r") as f:
         templateFile = f.read()
 
     templateJinja = Template(templateFile)
 
     data = {
-        "name" : "Nathan SAKKRIOU",
         "badges" : BADGES,
-        "weather" : get_weather("Rennes")   
+        "weather" : get_weather(city)   
     }
 
     with open("README.md", "w", encoding="utf-8") as readme:
