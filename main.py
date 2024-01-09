@@ -1,6 +1,7 @@
 from jinja2 import Template
+import requests
 
-badges = [
+BADGES = [
     "![Vagrant](https://img.shields.io/badge/vagrant-%231563FF.svg?style=for-the-badge&logo=vagrant&logoColor=white)",
     "![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)",
     "![Ansible](https://img.shields.io/badge/ansible-%231A1918.svg?style=for-the-badge&logo=ansible&logoColor=white)",
@@ -34,6 +35,10 @@ badges = [
 # "![Apache](https://img.shields.io/badge/apache-%23D42029.svg?style=for-the-badge&logo=apache&logoColor=white)",
 # "![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)",
     
+def get_weather(city):
+    url = 'https://wttr.in/{}?m&format=3'.format(city)
+    res = requests.get(url)
+    return res.text
 
 if __name__ == "__main__":
     
@@ -44,8 +49,9 @@ if __name__ == "__main__":
 
     data = {
         "name" : "Nathan SAKKRIOU",
-        "badges" : badges
+        "badges" : BADGES,
+        "weather" : get_weather("Rennes")   
     }
 
-    with open("README.md", "w") as readme:
+    with open("README.md", "w", encoding="utf-8") as readme:
         readme.write(templateJinja.render(data))
