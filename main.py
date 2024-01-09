@@ -1,5 +1,5 @@
 from jinja2 import Template
-import requests, os, sys
+import requests, os, sys, datetime
 
 BADGES = [
     "![Vagrant](https://img.shields.io/badge/vagrant-%231563FF.svg?style=for-the-badge&logo=vagrant&logoColor=white)",
