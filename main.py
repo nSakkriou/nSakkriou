@@ -42,7 +42,7 @@ def get_weather(city):
 def get_date():
     return datetime.datetime.now()
 
-PATH_PREFIX = "/home/nsakkriou/github-profile-update/nSakkriou/"
+PATH_PREFIX = "/home/debian/github-profile-update/nSakkriou/"
 
 if __name__ == "__main__":
     city = "Rennes"
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     if(len(sys.argv) > 1):
         city = sys.argv[1]
 
-    with open(PATH_PREFIX + "README.template.md", "r") as f:
+    with open("README.template.md", "r") as f:
         templateFile = f.read()
 
     templateJinja = Template(templateFile)
@@ -64,5 +64,5 @@ if __name__ == "__main__":
    	"date": get_date()
     }
 
-    with open(PATH_PREFIX + "README.md", "w", encoding="utf-8") as readme:
+    with open("README.md", "w", encoding="utf-8") as readme:
         readme.write(templateJinja.render(data))
